@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Booking Successful</title>
-    <link rel="stylesheet" href="static/styles.css">
+    <title>Booking Confirmed</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Booking Successful!</h1>
-        <p>Your PNR: {{ pnr }}</p>
-        <a href="{{ url_for('index') }}">Back to Home</a>
-    </div>
+    <h1>Flight Booked Successfully!</h1>
+    <p>Thank you, <strong>{{ name }}</strong>.</p>
+    <p><strong>Your PNR:</strong> {{ pnr }}</p>
+    <p><strong>Your Baggage ID:</strong> {{ baggage_id }}</p>
+    <p><strong>Assigned Belt Number:</strong> {{ belt_number }}</p>
+
+    <a href="/">Back to Home</a>
 </body>
 </html>

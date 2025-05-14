@@ -1,3 +1,6 @@
+import random
+import sqlite3
+import string
 from flask import Flask, render_template, request, redirect, url_for
 from scripts.book_flight import book_flight
 from scripts.check_pnr import check_pnr
@@ -10,14 +13,52 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/book', methods=['GET', 'POST'])
+@app.route("/book", methods=["GET", "POST"])
 def book():
-    if request.method == 'POST':
-        passenger_name = request.form['name']
-        flight_id = request.form['flight_id']
-        pnr = book_flight(passenger_name, flight_id)
-        return render_template('booking_success.html', pnr=pnr)
-    return render_template('book_flight.html')
+    conn = sqlite3.connect("db/flight.db")
+    cur = conn.cursor()
+
+    # Ensure the Flights table exists
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS Flights (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            flight_number TEXT NOT NULL,
+            departure_city TEXT NOT NULL,
+            arrival_city TEXT NOT NULL,
+            departure_time TEXT NOT NULL,
+            arrival_time TEXT NOT NULL
+        )
+    """)
+    conn.commit()
+
+    if request.method == "POST":
+        name = request.form["name"]
+        flight_id = request.form["flight_id"]
+
+        # Generate values
+        pnr = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
+        baggage_id = "BG" + ''.join(random.choices(string.digits, k=4))
+        belt_number = random.randint(1, 10)
+
+        # Insert into bookings table
+        cur.execute("""
+            INSERT INTO bookings (pnr, passenger_name, flight_id, baggage_id, belt_number)
+            VALUES (?, ?, ?, ?, ?)""",
+            (pnr, name, flight_id, baggage_id, belt_number)
+        )
+
+        conn.commit()
+        conn.close()
+
+        return render_template("booking_success.html", pnr=pnr, name=name, baggage_id=baggage_id, belt_number=belt_number)
+
+    # GET method – show available flights
+    cur.execute("SELECT * FROM Flights")
+    flights = cur.fetchall()
+    conn.close()
+    return render_template("book_flights.html", flights=flights)
+
+
 
 @app.route('/check_pnr', methods=['GET', 'POST'])
 def pnr():

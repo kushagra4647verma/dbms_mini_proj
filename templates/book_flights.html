@@ -1,22 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Book a Flight</title>
-    <link rel="stylesheet" href="static/styles.css">
+    <title>Book Flight</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Book a Flight</h1>
-        <form action="{{ url_for('book') }}" method="post">
-            <label for="name">Passenger Name:</label>
-            <input type="text" name="name" required><br>
+    <h1>Book a Flight</h1>
 
-            <label for="flight_id">Flight ID:</label>
-            <input type="text" name="flight_id" required><br>
+    {% if flights %}
+    <form method="POST">
+        <label>Passenger Name:</label>
+        <input type="text" name="name" required><br><br>
 
-            <button type="submit">Book Flight</button>
-        </form>
-    </div>
+        <label>Select a Flight:</label>
+        <select name="flight_id" required>
+            {% for flight in flights %}
+                <option value="{{ flight[0] }}">ID: {{ flight[0] }} | Airline: {{ flight[1] }} | Destination: {{ flight[2] }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <button type="submit">Book Flight</button>
+    </form>
+    {% else %}
+        <p>No flights available.</p>
+    {% endif %}
 </body>
 </html>
