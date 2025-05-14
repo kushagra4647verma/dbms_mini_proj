@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Schedule</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>View Flight Schedule</h1>
+        <form action="{{ url_for('schedule') }}" method="post">
+            <label for="city">Enter destination city:</label>
+            <input type="text" name="city" required><br>
+
+            <button type="submit">View Schedule</button>
+        </form>
+    </div>
+</body>
+</html>

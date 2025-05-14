@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Flights to {{ city }}</h1>
+        <ul>
+            {% for flight in flights %}
+            <li>{{ flight[0] }} | Date: {{ flight[1] }} | Time: {{ flight[2] }} - {{ flight[3] }} | Gate: {{ flight[4] }}</li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('index') }}">Back to Home</a>
+    </div>
+</body>
+</html>

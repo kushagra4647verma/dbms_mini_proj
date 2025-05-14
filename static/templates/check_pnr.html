@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Check PNR</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Check PNR</h1>
+        <form action="{{ url_for('pnr') }}" method="post">
+            <label for="pnr">Enter PNR:</label>
+            <input type="text" name="pnr" required><br>
+
+            <button type="submit">Check PNR</button>
+        </form>
+    </div>
+</body>
+</html>
