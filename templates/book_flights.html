@@ -10,7 +10,7 @@
             padding: 40px;
             display: flex;
             justify-content: center;
-            background: url("https://www.reuters.com/resizer/v2/ZX3FAZR265K3XCF746SXXQ474Y.jpg?auth=8aee05b3dd7614df55ba431d76752f6bdbc4e3d30c4f14c173fcf1b763645a30&width=1200&quality=80");
+            background: url("https://www.reuters.com/resizer/v2/ZX3FAZR265K3XCF746SXXQ474Y.jpg?auth=8aee05b3dd7614df55ba431d76752f6bdbc4e3d30c4f14c173fcf1b763645a30&width=1200&quality=80") no-repeat center center fixed;
         }
 
         .container {
@@ -35,8 +35,7 @@
             color: #444;
         }
 
-        input[type="text"],
-        select {
+        input[type="text"], select {
             width: 100%;
             padding: 10px 12px;
             margin-bottom: 20px;
@@ -70,24 +69,52 @@
     <div class="container">
         <h1>Book a Flight</h1>
 
-        {% if flights %}
-        <form method="POST">
-            <label for="name">Passenger Name:</label>
-            <input type="text" name="name" id="name" required>
+        {% if flights is not none %}
+            {% if flights %}
+                <!-- Show the booking form with name + destination (readonly) + flight dropdown -->
+                <form method="POST">
+                    <label for="name">Passenger Name:</label>
+                    <input type="text" name="name" id="name" required value="{{ name }}" >
 
-            <label for="flight_id">Select a Flight:</label>
-            <select name="flight_id" id="flight_id" required>
-                {% for flight in flights %}
-                    <option value="{{ flight[0] }}">
-                        Flight {{ flight[0] }} | Airline: {{ flight[1] }} | Destination: {{ flight[2] }} | Date: {{ flight[3] }} | Time: {{ flight[4] }} - {{ flight[5] }} | Gate: {{ flight[6] }}
-                    </option>
-                {% endfor %}
-            </select>
+                    <label for="destination">Destination:</label>
+                    <input type="text" name="destination" id="destination" readonly value="{{ destination }}" >
 
-            <button type="submit">Book Flight</button>
-        </form>
+                    <label for="flight_id">Select a Flight:</label>
+                    <select name="flight_id" id="flight_id" required>
+                        {% for flight in flights %}
+                            <option value="{{ flight[0] }}">
+                                Flight {{ flight[0] }} | Airline: {{ flight[1] }} | Destination: {{ flight[2] }} | Date: {{ flight[3] }} | Time: {{ flight[4] }} - {{ flight[5] }} | Gate: {{ flight[6] }}
+                            </option>
+                        {% endfor %}
+                    </select>
+
+                    <button type="submit">Book Flight</button>
+                </form>
+            {% else %}
+                <p>No flights available for destination "{{ destination }}".</p>
+
+                <!-- Show form again to re-enter destination and name -->
+                <form method="POST">
+                    <label for="name">Passenger Name:</label>
+                    <input type="text" name="name" id="name" required value="{{ name }}">
+
+                    <label for="destination">Enter Destination:</label>
+                    <input type="text" name="destination" id="destination" required>
+
+                    <button type="submit">Search Flights</button>
+                </form>
+            {% endif %}
         {% else %}
-            <p>No flights available.</p>
+            <!-- Initial form: ask for name and destination -->
+            <form method="POST">
+                <label for="name">Passenger Name:</label>
+                <input type="text" name="name" id="name" required>
+
+                <label for="destination">Enter Destination:</label>
+                <input type="text" name="destination" id="destination" required>
+
+                <button type="submit">Search Flights</button>
+            </form>
         {% endif %}
     </div>
 </body>
