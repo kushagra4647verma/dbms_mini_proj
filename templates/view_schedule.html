@@ -3,14 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <title>View Schedule</title>
-    <link rel="stylesheet" href="static/styles.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 2rem 3rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            text-align: center;
+        }
+        h1 {
+            color: #0041c4;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #222;
+            text-align: left;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 0.5rem 0.8rem;
+            margin-bottom: 1.5rem;
+            border: 1.5px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        input[type="text"]:focus {
+            border-color: #0041c4;
+            outline: none;
+        }
+        button {
+            background-color: #0041c4;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            font-size: 1rem;
+        }
+        button:hover {
+            background-color: #002a80;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>View Flight Schedule</h1>
         <form action="{{ url_for('schedule') }}" method="post">
             <label for="city">Enter destination city:</label>
-            <input type="text" name="city" required><br>
+            <input type="text" name="city" id="city" required>
 
             <button type="submit">View Schedule</button>
         </form>

@@ -1,10 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Cancelled</title>
+    <title>Flight Cancelled</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #dc3545;
+            margin-bottom: 20px;
+        }
+
+        a {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Flight Cancelled Successfully</h1>
-    <a href="/">Return to Home</a>
+    <div class="container">
+        <h1>Flight Cancelled Successfully</h1>
+        <a href="/">Return to Home</a>
+    </div>
 </body>
 </html>

@@ -4,11 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flight Management System</title>
-    <link rel="stylesheet" href="static/styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: url("https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/u1-1716168231512.jpg") no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.6);
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 15px 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to the Flight Management System</h1>
+        <h1>Welcome to</h1>
+        <h1>Suvarnabhumi Airport</h1>
         <ul>
             <li><a href="{{ url_for('book') }}">Book a Flight</a></li>
             <li><a href="{{ url_for('pnr') }}">Check PNR</a></li>

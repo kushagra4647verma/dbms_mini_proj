@@ -2,14 +2,67 @@
 <html>
 <head>
     <title>Booking Confirmed</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9f5ff;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .confirmation-box {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #007BFF;
+            padding: 10px 18px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Flight Booked Successfully!</h1>
-    <p>Thank you, <strong>{{ name }}</strong>.</p>
-    <p><strong>Your PNR:</strong> {{ pnr }}</p>
-    <p><strong>Your Baggage ID:</strong> {{ baggage_id }}</p>
-    <p><strong>Assigned Belt Number:</strong> {{ belt_number }}</p>
+    <div class="confirmation-box">
+        <h1>Flight Booked Successfully!</h1>
+        <p>Thank you, <strong>{{ name }}</strong>.</p>
+        <p><strong>Your PNR:</strong> {{ pnr }}</p>
+        <p><strong>Your Baggage ID:</strong> {{ baggage_id }}</p>
+        <p><strong>Assigned Belt Number:</strong> {{ belt_number }}</p>
 
-    <a href="/">Back to Home</a>
+        <a href="/">Back to Home</a>
+    </div>
 </body>
 </html>
