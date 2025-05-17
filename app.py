@@ -7,6 +7,7 @@ from scripts.check_pnr import check_pnr
 from scripts.view_schedule import view_schedule
 from scripts.cancel_flight import cancel_flight
 
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -17,19 +18,6 @@ def index():
 def book():
     conn = sqlite3.connect("db/flight.db")
     cur = conn.cursor()
-
-    # Ensure the Flights table exists
-    cur.execute("""
-        CREATE TABLE IF NOT EXISTS Flights (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            flight_number TEXT NOT NULL,
-            departure_city TEXT NOT NULL,
-            arrival_city TEXT NOT NULL,
-            departure_time TEXT NOT NULL,
-            arrival_time TEXT NOT NULL
-        )
-    """)
-    conn.commit()
 
     if request.method == "POST":
         name = request.form["name"]
@@ -52,11 +40,17 @@ def book():
 
         return render_template("booking_success.html", pnr=pnr, name=name, baggage_id=baggage_id, belt_number=belt_number)
 
-    # GET method – show available flights
-    cur.execute("SELECT * FROM Flights")
+    # GET method – fetch flights with airline and destination names
+    cur.execute("""
+        SELECT Flights.flight_id, Airlines.name, Destinations.city, flight_date, departure_time, arrival_time, gate_number
+        FROM Flights
+        JOIN Airlines ON Flights.airline_id = Airlines.airline_id
+        JOIN Destinations ON Flights.destination_id = Destinations.destination_id
+    """)
     flights = cur.fetchall()
     conn.close()
     return render_template("book_flights.html", flights=flights)
+
 
 
 

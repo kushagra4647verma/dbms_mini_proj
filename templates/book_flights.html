@@ -14,9 +14,12 @@
         <label>Select a Flight:</label>
         <select name="flight_id" required>
             {% for flight in flights %}
-                <option value="{{ flight[0] }}">ID: {{ flight[0] }} | Airline: {{ flight[1] }} | Destination: {{ flight[2] }}</option>
+                <option value="{{ flight[0] }}">
+                    Flight {{ flight[0] }} | Airline: {{ flight[1] }} | Destination: {{ flight[2] }} | Date: {{ flight[3] }} | Time: {{ flight[4] }} - {{ flight[5] }} | Gate: {{ flight[6] }}
+                </option>
             {% endfor %}
-        </select><br><br>
+        </select>
+        <br><br>
 
         <button type="submit">Book Flight</button>
     </form>
