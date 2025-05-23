@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>View Schedule</title>
+    <title>View Flight Schedule</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -19,13 +19,20 @@
             padding: 2rem 3rem;
             border-radius: 12px;
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-            width: 320px;
+            width: 90%;
+            max-width: 800px;
             text-align: center;
         }
         h1 {
             color: #0041c4;
             margin-bottom: 1.5rem;
             font-weight: 700;
+        }
+        .search-form {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: #f8f9ff;
+            border-radius: 8px;
         }
         label {
             display: block;
@@ -36,8 +43,8 @@
         }
         input[type="text"] {
             width: 100%;
-            padding: 0.5rem 0.8rem;
-            margin-bottom: 1.5rem;
+            padding: 0.8rem 1rem;
+            margin-bottom: 1rem;
             border: 1.5px solid #ccc;
             border-radius: 6px;
             font-size: 1rem;
@@ -51,28 +58,116 @@
             background-color: #0041c4;
             color: white;
             border: none;
-            padding: 0.6rem 1.5rem;
+            padding: 0.8rem 2rem;
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            width: 100%;
             font-size: 1rem;
         }
         button:hover {
             background-color: #002a80;
+        }
+        .results-section {
+            margin-top: 2rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f3f7ff;
+            font-weight: 600;
+            color: #0041c4;
+        }
+        tr:hover {
+            background-color: #f9fbff;
+        }
+        .no-flights {
+            padding: 20px;
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 6px;
+            margin-top: 1rem;
+            color: #856404;
+        }
+        .back-link {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #6c757d;
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            margin-top: 1rem;
+        }
+        .back-link:hover {
+            background-color: #545b62;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>View Flight Schedule</h1>
-        <form action="{{ url_for('schedule') }}" method="post">
-            <label for="city">Enter destination city:</label>
-            <input type="text" name="city" id="city" required>
+        
+        <!-- Search Form -->
+        <div class="search-form">
+            <form method="post">
+                <label for="city">Enter destination city:</label>
+                <input type="text" name="city" id="city" value="{{ city or '' }}" required placeholder="e.g., Delhi, Mumbai, Chennai">
+                <button type="submit">Search Flights</button>
+            </form>
+        </div>
 
-            <button type="submit">View Schedule</button>
-        </form>
+        <!-- Results Section -->
+        {% if city %}
+            <div class="results-section">
+                <h2>Flights to {{ city }}</h2>
+                
+                {% if flights and flights|length > 0 %}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Flight ID</th>
+                                <th>Airline</th>
+                                <th>Date</th>
+                                <th>Departure</th>
+                                <th>Arrival</th>
+                                <th>Gate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for flight in flights %}
+                            <tr>
+                                <td>{{ flight[0] }}</td>
+                                <td>{{ flight[1] }}</td>
+                                <td>{{ flight[3] }}</td>
+                                <td>{{ flight[4] }}</td>
+                                <td>{{ flight[5] }}</td>
+                                <td>{{ flight[6] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <div class="no-flights">
+                        <strong>No flights found for "{{ city }}"</strong><br>
+                        Please check the spelling or try a different destination.
+                        <br><br>
+                        Available destinations: Delhi, Mumbai, Chennai, Hyderabad, Kolkata, Pune, Ahmedabad, Jaipur, Goa, Lucknow
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+        
+        <a href="{{ url_for('index') }}" class="back-link">Back to Home</a>
     </div>
 </body>
 </html>

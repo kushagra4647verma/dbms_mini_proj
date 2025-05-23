@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Schedule</title>
+    <title>Flight Schedule</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -20,7 +20,7 @@
             padding: 2rem 3rem;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            max-width: 600px;
+            max-width: 800px;
             width: 90%;
             text-align: center;
         }
@@ -29,20 +29,30 @@
             margin-bottom: 1.5rem;
             font-weight: 700;
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
+        table {
+            width: 100%;
+            border-collapse: collapse;
             margin-bottom: 2rem;
-            text-align: left;
         }
-        li {
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f3f7ff;
+            font-weight: 600;
+            color: #0052cc;
+        }
+        tr:hover {
+            background-color: #f9fbff;
+        }
+        .no-flights {
+            padding: 20px;
             background: #f3f7ff;
-            margin-bottom: 0.8rem;
-            padding: 0.8rem 1rem;
             border-radius: 6px;
-            font-size: 1rem;
-            color: #333;
-            box-shadow: inset 0 0 5px #cde0ff;
+            margin-bottom: 2rem;
+            color: #555;
         }
         a {
             display: inline-block;
@@ -62,11 +72,38 @@
 <body>
     <div class="container">
         <h1>Flights to {{ city }}</h1>
-        <ul>
-            {% for flight in flights %}
-            <li>{{ flight[0] }} | Date: {{ flight[1] }} | Time: {{ flight[2] }} - {{ flight[3] }} | Gate: {{ flight[4] }}</li>
-            {% endfor %}
-        </ul>
+        
+        {% if flights and flights|length > 0 %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Flight ID</th>
+                        <th>Airline</th>
+                        <th>Date</th>
+                        <th>Departure</th>
+                        <th>Arrival</th>
+                        <th>Gate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for flight in flights %}
+                    <tr>
+                        <td>{{ flight[0] }}</td>
+                        <td>{{ flight[1] }}</td>
+                        <td>{{ flight[3] }}</td>
+                        <td>{{ flight[4] }}</td>
+                        <td>{{ flight[5] }}</td>
+                        <td>{{ flight[6] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="no-flights">
+                No flights found for this destination.
+            </div>
+        {% endif %}
+        
         <a href="{{ url_for('index') }}">Back to Home</a>
     </div>
 </body>

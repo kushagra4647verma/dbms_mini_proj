@@ -1,17 +1,32 @@
+-- Drop existing tables if they exist (ignore errors if they don't exist)
+DROP TABLE Bookings CASCADE CONSTRAINTS;
+DROP TABLE Flights CASCADE CONSTRAINTS;
+DROP TABLE Destinations CASCADE CONSTRAINTS;
+DROP TABLE Airlines CASCADE CONSTRAINTS;
+
+-- Drop sequences if they exist
+DROP SEQUENCE airline_seq;
+DROP SEQUENCE destination_seq;
+DROP SEQUENCE flight_seq;
+
+-- Create sequences
 CREATE SEQUENCE airline_seq START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE destination_seq START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE flight_seq START WITH 1 INCREMENT BY 1;
 
+-- Create Airlines table
 CREATE TABLE Airlines (
   airline_id   NUMBER PRIMARY KEY,
   name         VARCHAR2(100) NOT NULL
 );
 
+-- Create Destinations table
 CREATE TABLE Destinations (
   destination_id NUMBER PRIMARY KEY,
   city           VARCHAR2(100) NOT NULL
 );
 
+-- Create Flights table
 CREATE TABLE Flights (
   flight_id      NUMBER PRIMARY KEY,
   airline_id     NUMBER REFERENCES Airlines(airline_id) ON DELETE CASCADE,
@@ -22,17 +37,16 @@ CREATE TABLE Flights (
   gate_number    VARCHAR2(10)
 );
 
+-- Create Bookings table
 CREATE TABLE Bookings (
   pnr            VARCHAR2(20) PRIMARY KEY,
-  passenger_name VARCHAR2(100),
+  passenger_name VARCHAR2(100) NOT NULL,
   flight_id      NUMBER REFERENCES Flights(flight_id) ON DELETE CASCADE,
   baggage_id     VARCHAR2(20),
   belt_number    VARCHAR2(10)
 );
 
--- Triggers for auto increment, views, and procedures omitted for brevity but use your original script
-
--- 2. Triggers for Auto-Increment -----------------------------------
+-- Create triggers for auto-increment
 CREATE OR REPLACE TRIGGER trg_airline_id
   BEFORE INSERT ON Airlines
   FOR EACH ROW
@@ -57,8 +71,7 @@ BEGIN
 END;
 /
 
--- 3. Views for Common Queries --------------------------------------
--- Upcoming flights view
+-- Create views for common queries
 CREATE OR REPLACE VIEW vw_upcoming_flights AS
 SELECT 
   f.flight_id,
@@ -73,7 +86,7 @@ JOIN Airlines a   ON f.airline_id = a.airline_id
 JOIN Destinations d ON f.destination_id = d.destination_id
 WHERE f.flight_date >= TRUNC(SYSDATE);
 
--- Booking summary per city
+-- Create booking summary view
 CREATE OR REPLACE VIEW vw_booking_summary AS
 SELECT
   d.city,
@@ -85,7 +98,7 @@ JOIN Flights f     ON b.flight_id = f.flight_id
 JOIN Destinations d ON f.destination_id = d.destination_id
 GROUP BY d.city;
 
--- 4. PL/SQL Procedure Using a Cursor --------------------------------
+-- Create procedure for listing bookings by city
 CREATE OR REPLACE PROCEDURE list_bookings_by_city (
   p_city   IN  VARCHAR2,
   p_refcur OUT SYS_REFCURSOR
