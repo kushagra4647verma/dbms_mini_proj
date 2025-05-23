@@ -3,14 +3,18 @@ from scripts.utils import connect_db
 def view_schedule(city):
     conn = connect_db()
     cursor = conn.cursor()
-    cursor.execute("""
-        SELECT Airlines.name, flight_date, departure_time, arrival_time, gate_number
-        FROM Flights
-        JOIN Airlines ON Flights.airline_id = Airlines.airline_id
-        JOIN Destinations ON Flights.destination_id = Destinations.destination_id
-        WHERE Destinations.city = ?
-    """, (city,))
+    sql = """
+        SELECT f.flight_id, a.name, d.city,
+               f.flight_date, f.departure_time, f.arrival_time, f.gate_number
+        FROM Flights f
+        JOIN Airlines a ON f.airline_id = a.airline_id
+        JOIN Destinations d ON f.destination_id = d.destination_id
+        WHERE LOWER(d.city) = LOWER(:city)
+        ORDER BY f.flight_date, f.departure_time
+    """
+    cursor.execute(sql, {"city": city.strip()})
     rows = cursor.fetchall()
+    cursor.close()
     conn.close()
-
     return rows
+

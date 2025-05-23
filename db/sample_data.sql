@@ -1,87 +1,108 @@
 -- Airlines
-INSERT INTO Airlines (name) VALUES ('IndiGo'), ('Air India'), ('SpiceJet');
-INSERT INTO Airlines (name) VALUES
-('Vistara'), ('Go First'), ('AirAsia India'), ('Akasa Air');
+INSERT INTO Airlines (name) VALUES ('Air India');
+INSERT INTO Airlines (name) VALUES ('IndiGo');
+INSERT INTO Airlines (name) VALUES ('SpiceJet');
+INSERT INTO Airlines (name) VALUES ('Vistara');
+INSERT INTO Airlines (name) VALUES ('GoAir');
 
+-- Destinations (excluding Bengaluru)
+INSERT INTO Destinations (city) VALUES ('Delhi');
+INSERT INTO Destinations (city) VALUES ('Mumbai');
+INSERT INTO Destinations (city) VALUES ('Chennai');
+INSERT INTO Destinations (city) VALUES ('Hyderabad');
+INSERT INTO Destinations (city) VALUES ('Kolkata');
+INSERT INTO Destinations (city) VALUES ('Pune');
+INSERT INTO Destinations (city) VALUES ('Ahmedabad');
+INSERT INTO Destinations (city) VALUES ('Jaipur');
+INSERT INTO Destinations (city) VALUES ('Goa');
+INSERT INTO Destinations (city) VALUES ('Lucknow');
 
--- Destinations
-INSERT INTO Destinations (city) VALUES ('Delhi'), ('Mumbai'), ('Bangalore');
-INSERT INTO Destinations (city) VALUES
-('Chennai'), ('Hyderabad'), ('Kolkata'), ('Pune'), ('Ahmedabad'), ('Goa'), ('Jaipur');
+-- Flights: 3 flights per destination
 
-
--- Flights
--- Additional 50 sample Flights
+-- Delhi
 INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
-VALUES
-(1, 1, '2025-05-16', '08:30', '10:30', 'A2'),
-(2, 2, '2025-05-16', '11:00', '13:00', 'B1'),
-(3, 3, '2025-05-16', '14:00', '16:00', 'C2'),
-(1, 2, '2025-05-17', '07:00', '09:00', 'A3'),
-(2, 3, '2025-05-17', '10:00', '12:00', 'B3'),
-(3, 1, '2025-05-17', '13:30', '15:30', 'C1'),
-(1, 3, '2025-05-18', '06:00', '08:00', 'A4'),
-(2, 1, '2025-05-18', '09:30', '11:30', 'B4'),
-(3, 2, '2025-05-18', '12:30', '14:30', 'C4'),
-(1, 1, '2025-05-19', '15:00', '17:00', 'A5'),
-(2, 2, '2025-05-19', '17:30', '19:30', 'B5'),
-(3, 3, '2025-05-19', '20:00', '22:00', 'C5'),
-(1, 2, '2025-05-20', '08:00', '10:00', 'A6'),
-(2, 3, '2025-05-20', '11:00', '13:00', 'B6'),
-(3, 1, '2025-05-20', '14:00', '16:00', 'C6'),
-(1, 3, '2025-05-21', '07:30', '09:30', 'A7'),
-(2, 1, '2025-05-21', '10:00', '12:00', 'B7'),
-(3, 2, '2025-05-21', '12:30', '14:30', 'C7'),
-(1, 1, '2025-05-22', '13:00', '15:00', 'A8'),
-(2, 2, '2025-05-22', '16:00', '18:00', 'B8'),
-(3, 3, '2025-05-22', '18:30', '20:30', 'C8'),
-(1, 2, '2025-05-23', '09:00', '11:00', 'A9'),
-(2, 3, '2025-05-23', '12:00', '14:00', 'B9'),
-(3, 1, '2025-05-23', '15:00', '17:00', 'C9'),
-(1, 3, '2025-05-24', '06:00', '08:00', 'A10'),
-(2, 1, '2025-05-24', '09:30', '11:30', 'B10'),
-(3, 2, '2025-05-24', '12:30', '14:30', 'C10'),
-(1, 1, '2025-05-25', '15:00', '17:00', 'A11'),
-(2, 2, '2025-05-25', '17:30', '19:30', 'B11'),
-(3, 3, '2025-05-25', '20:00', '22:00', 'C11'),
-(1, 2, '2025-05-26', '08:00', '10:00', 'A12'),
-(2, 3, '2025-05-26', '11:00', '13:00', 'B12'),
-(3, 1, '2025-05-26', '14:00', '16:00', 'C12'),
-(1, 3, '2025-05-27', '07:30', '09:30', 'A13'),
-(2, 1, '2025-05-27', '10:00', '12:00', 'B13'),
-(3, 2, '2025-05-27', '12:30', '14:30', 'C13'),
-(1, 1, '2025-05-28', '13:00', '15:00', 'A14'),
-(2, 2, '2025-05-28', '16:00', '18:00', 'B14'),
-(3, 3, '2025-05-28', '18:30', '20:30', 'C14'),
-(1, 2, '2025-05-29', '09:00', '11:00', 'A15'),
-(2, 3, '2025-05-29', '12:00', '14:00', 'B15'),
-(3, 1, '2025-05-29', '15:00', '17:00', 'C15'),
-(1, 3, '2025-05-30', '06:00', '08:00', 'A16'),
-(2, 1, '2025-05-30', '09:30', '11:30', 'B16'),
-(3, 2, '2025-05-30', '12:30', '14:30', 'C16'),
-(1, 1, '2025-05-31', '15:00', '17:00', 'A17'),
-(2, 2, '2025-05-31', '17:30', '19:30', 'B17'),
-(3, 3, '2025-05-31', '20:00', '22:00', 'C17'),
-(1, 2, '2025-06-01', '08:30', '10:30', 'A18'),
-(2, 3, '2025-06-01', '11:30', '13:30', 'B18'),
-(3, 1, '2025-06-01', '14:30', '16:30', 'C18'),
-(4, 4, '2025-06-02', '06:30', '08:30', 'D1'),
-(5, 5, '2025-06-02', '09:00', '11:00', 'E1'),
-(6, 6, '2025-06-02', '11:30', '13:30', 'F1'),
-(7, 7, '2025-06-02', '14:00', '16:00', 'G1'),
-(4, 8, '2025-06-03', '07:30', '09:30', 'D2'),
-(5, 9, '2025-06-03', '10:00', '12:00', 'E2'),
-(6, 10, '2025-06-03', '13:00', '15:00', 'F2'),
-(7, 4, '2025-06-03', '16:30', '18:30', 'G2'),
-(4, 5, '2025-06-04', '06:00', '08:00', 'D3'),
-(5, 6, '2025-06-04', '08:30', '10:30', 'E3'),
-(6, 7, '2025-06-04', '11:00', '13:00', 'F3'),
-(7, 8, '2025-06-04', '13:30', '15:30', 'G3'),
-(4, 9, '2025-06-05', '09:00', '11:00', 'D4'),
-(5, 10, '2025-06-05', '11:30', '13:30', 'E4'),
-(6, 4, '2025-06-05', '14:00', '16:00', 'F4'),
-(7, 5, '2025-06-05', '16:30', '18:30', 'G4'),
-(4, 6, '2025-06-06', '07:00', '09:00', 'D5'),
-(5, 7, '2025-06-06', '09:30', '11:30', 'E5'),
-(6, 8, '2025-06-06', '12:00', '14:00', 'F5'),
-(7, 9, '2025-06-06', '14:30', '16:30', 'G5');
+VALUES ((SELECT airline_id FROM Airlines WHERE name='Air India'), (SELECT destination_id FROM Destinations WHERE city='Delhi'), TO_DATE('2025-06-01', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-01 06:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-01 08:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'D1');
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='IndiGo'), (SELECT destination_id FROM Destinations WHERE city='Delhi'), TO_DATE('2025-06-02', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-02 14:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-02 16:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'D2');
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='SpiceJet'), (SELECT destination_id FROM Destinations WHERE city='Delhi'), TO_DATE('2025-06-03', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-03 20:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-03 22:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'D3');
+
+-- Mumbai
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='Vistara'), (SELECT destination_id FROM Destinations WHERE city='Mumbai'), TO_DATE('2025-06-01', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-01 07:30:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-01 09:45:00', 'YYYY-MM-DD HH24:MI:SS'), 'M1');
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='GoAir'), (SELECT destination_id FROM Destinations WHERE city='Mumbai'), TO_DATE('2025-06-02', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-02 12:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-02 14:15:00', 'YYYY-MM-DD HH24:MI:SS'), 'M2');
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='Air India'), (SELECT destination_id FROM Destinations WHERE city='Mumbai'), TO_DATE('2025-06-03', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-03 18:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-03 20:15:00', 'YYYY-MM-DD HH24:MI:SS'), 'M3');
+
+-- Chennai
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='IndiGo'), (SELECT destination_id FROM Destinations WHERE city='Chennai'), TO_DATE('2025-06-04', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-04 05:45:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-04 08:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'C1');
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='SpiceJet'), (SELECT destination_id FROM Destinations WHERE city='Chennai'), TO_DATE('2025-06-05', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-05 13:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-05 15:15:00', 'YYYY-MM-DD HH24:MI:SS'), 'C2');
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='Vistara'), (SELECT destination_id FROM Destinations WHERE city='Chennai'), TO_DATE('2025-06-06', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-06 19:30:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-06 21:45:00', 'YYYY-MM-DD HH24:MI:SS'), 'C3');
+
+-- Hyderabad
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='GoAir'), (SELECT destination_id FROM Destinations WHERE city='Hyderabad'), TO_DATE('2025-06-01', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-01 06:30:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-01 08:40:00', 'YYYY-MM-DD HH24:MI:SS'), 'H1');
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='Air India'), (SELECT destination_id FROM Destinations WHERE city='Hyderabad'), TO_DATE('2025-06-02', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-02 11:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-02 13:10:00', 'YYYY-MM-DD HH24:MI:SS'), 'H2');
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='IndiGo'), (SELECT destination_id FROM Destinations WHERE city='Hyderabad'), TO_DATE('2025-06-03', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-03 17:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-03 19:10:00', 'YYYY-MM-DD HH24:MI:SS'), 'H3');
+
+-- Kolkata
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='SpiceJet'), (SELECT destination_id FROM Destinations WHERE city='Kolkata'), TO_DATE('2025-06-04', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-04 07:15:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-04 09:45:00', 'YYYY-MM-DD HH24:MI:SS'), 'K1');
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='Vistara'), (SELECT destination_id FROM Destinations WHERE city='Kolkata'), TO_DATE('2025-06-05', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-05 13:30:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-05 16:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'K2');
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='GoAir'), (SELECT destination_id FROM Destinations WHERE city='Kolkata'), TO_DATE('2025-06-06', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-06 18:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-06 20:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'K3');
+
+-- Pune
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='Air India'), (SELECT destination_id FROM Destinations WHERE city='Pune'), TO_DATE('2025-06-01', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-01 09:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-01 11:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'P1');
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='IndiGo'), (SELECT destination_id FROM Destinations WHERE city='Pune'), TO_DATE('2025-06-02', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-02 15:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-02 17:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'P2');
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='SpiceJet'), (SELECT destination_id FROM Destinations WHERE city='Pune'), TO_DATE('2025-06-03', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-03 20:30:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-03 22:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'P3');
+
+-- Ahmedabad
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='Vistara'), (SELECT destination_id FROM Destinations WHERE city='Ahmedabad'), TO_DATE('2025-06-04', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-04 06:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-04 08:10:00', 'YYYY-MM-DD HH24:MI:SS'), 'A1');
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='GoAir'), (SELECT destination_id FROM Destinations WHERE city='Ahmedabad'), TO_DATE('2025-06-05', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-05 12:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-05 14:10:00', 'YYYY-MM-DD HH24:MI:SS'), 'A2');
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='Air India'), (SELECT destination_id FROM Destinations WHERE city='Ahmedabad'), TO_DATE('2025-06-06', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-06 18:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-06 20:10:00', 'YYYY-MM-DD HH24:MI:SS'), 'A3');
+
+-- Jaipur
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='IndiGo'), (SELECT destination_id FROM Destinations WHERE city='Jaipur'), TO_DATE('2025-06-01', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-01 07:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-01 09:15:00', 'YYYY-MM-DD HH24:MI:SS'), 'J1');
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='SpiceJet'), (SELECT destination_id FROM Destinations WHERE city='Jaipur'), TO_DATE('2025-06-02', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-02 13:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-02 15:15:00', 'YYYY-MM-DD HH24:MI:SS'), 'J2');
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='Vistara'), (SELECT destination_id FROM Destinations WHERE city='Jaipur'), TO_DATE('2025-06-03', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-03 19:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-03 21:15:00', 'YYYY-MM-DD HH24:MI:SS'), 'J3');
+
+-- Goa
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='GoAir'), (SELECT destination_id FROM Destinations WHERE city='Goa'), TO_DATE('2025-06-01', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-01 06:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-01 08:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'G1');
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='Air India'), (SELECT destination_id FROM Destinations WHERE city='Goa'), TO_DATE('2025-06-02', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-02 14:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-02 16:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'G2');
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='IndiGo'), (SELECT destination_id FROM Destinations WHERE city='Goa'), TO_DATE('2025-06-03', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-03 20:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-03 22:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'G3');
+
+-- Lucknow
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='SpiceJet'), (SELECT destination_id FROM Destinations WHERE city='Lucknow'), TO_DATE('2025-06-04', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-04 07:30:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-04 09:45:00', 'YYYY-MM-DD HH24:MI:SS'), 'L1');
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='Vistara'), (SELECT destination_id FROM Destinations WHERE city='Lucknow'), TO_DATE('2025-06-05', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-05 13:30:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-05 15:45:00', 'YYYY-MM-DD HH24:MI:SS'), 'L2');
+INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
+VALUES ((SELECT airline_id FROM Airlines WHERE name='GoAir'), (SELECT destination_id FROM Destinations WHERE city='Lucknow'), TO_DATE('2025-06-06', 'YYYY-MM-DD'), TO_TIMESTAMP('2025-06-06 18:30:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2025-06-06 20:45:00', 'YYYY-MM-DD HH24:MI:SS'), 'L3');
+
+-- Example Bookings (for a few flights)
+INSERT INTO Bookings (pnr, airline_id, flight_id, baggage_id, passenger_name, seat_number)
+VALUES ('PNR001', (SELECT airline_id FROM Airlines WHERE name='Air India'), 1, 'BAG001', 'Kush', '12A');
+INSERT INTO Bookings (pnr, airline_id, flight_id, baggage_id, passenger_name, seat_number)
+VALUES ('PNR002', (SELECT airline_id FROM Airlines WHERE name='IndiGo'), 2, 'BAG002', 'Anita', '14B');
+INSERT INTO Bookings (pnr, airline_id, flight_id, baggage_id, passenger_name, seat_number)
+VALUES ('PNR003', (SELECT airline_id FROM Airlines WHERE name='SpiceJet'), 3, 'BAG003', 'Rahul', '15C');
