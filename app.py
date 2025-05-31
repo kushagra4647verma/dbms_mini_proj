@@ -2,7 +2,6 @@ import cx_Oracle
 from flask import Flask, render_template, request, g, redirect, url_for, flash
 import traceback
 
-# ─── Oracle Connection Config ───────────────────────────────────────
 DB_USER    = "SYSTEM"
 DB_PASS    = "tiger"
 DB_HOST    = "localhost"
@@ -10,7 +9,7 @@ DB_PORT    = 1521
 DB_SERVICE = "XEPDB1"
 
 app = Flask(__name__)
-app.secret_key = 'flight_management_secret_key'  # Required for flash messages
+app.secret_key = 'flight_management_secret_key' 
 
 def get_db_connection():
     """Get database connection from Flask g object or create a new one"""
@@ -30,13 +29,11 @@ def close_db_connection(exception):
     if conn:
         conn.close()
 
-# ─── Helper scripts ─────────────────────────────────────────────────
 from scripts.book_flight    import book_flight
 from scripts.check_pnr      import check_pnr
 from scripts.view_schedule  import view_schedule
 from scripts.cancel_flight  import cancel_flight
 
-# ─── Routes ─────────────────────────────────────────────────────────
 
 @app.route('/')
 def index():

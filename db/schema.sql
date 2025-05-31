@@ -9,6 +9,10 @@ DROP SEQUENCE airline_seq;
 DROP SEQUENCE destination_seq;
 DROP SEQUENCE flight_seq;
 
+-- Drop views if they exist
+DROP VIEW VW_BOOKING_SUMMARY;
+DROP VIEW VW_UPCOMING_FLIGHTS;
+
 -- Create sequences
 CREATE SEQUENCE airline_seq START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE destination_seq START WITH 1 INCREMENT BY 1;
@@ -71,43 +75,45 @@ BEGIN
 END;
 /
 
--- Create views for common queries
-CREATE OR REPLACE VIEW vw_upcoming_flights AS
+-- Create upcoming flights view (fixed syntax)
+CREATE OR REPLACE VIEW VW_UPCOMING_FLIGHTS AS
 SELECT 
   f.flight_id,
-  a.name   AS airline,
-  d.city   AS destination,
+  a.name AS airline,
+  d.city AS destination,
   f.flight_date,
   f.departure_time,
   f.arrival_time,
   f.gate_number
 FROM Flights f
-JOIN Airlines a   ON f.airline_id = a.airline_id
+JOIN Airlines a ON f.airline_id = a.airline_id
 JOIN Destinations d ON f.destination_id = d.destination_id
 WHERE f.flight_date >= TRUNC(SYSDATE);
+/
 
--- Create booking summary view
-CREATE OR REPLACE VIEW vw_booking_summary AS
+-- Create booking summary view (fixed syntax)
+CREATE OR REPLACE VIEW VW_BOOKING_SUMMARY AS
 SELECT
   d.city,
-  COUNT(b.pnr)           AS total_bookings,
-  MIN(f.flight_date)     AS first_flight,
-  MAX(f.flight_date)     AS last_flight
+  COUNT(b.pnr) AS total_bookings,
+  MIN(f.flight_date) AS first_flight,
+  MAX(f.flight_date) AS last_flight
 FROM Bookings b
-JOIN Flights f     ON b.flight_id = f.flight_id
+JOIN Flights f ON b.flight_id = f.flight_id
 JOIN Destinations d ON f.destination_id = d.destination_id
 GROUP BY d.city;
+/
 
 -- Create procedure for listing bookings by city
 CREATE OR REPLACE PROCEDURE list_bookings_by_city (
-  p_city   IN  VARCHAR2,
+  p_city IN VARCHAR2,
   p_refcur OUT SYS_REFCURSOR
 ) AS
 BEGIN
   OPEN p_refcur FOR
     SELECT b.pnr, b.passenger_name, f.flight_date
     FROM Bookings b
-    JOIN Flights f     ON b.flight_id      = f.flight_id
+    JOIN Flights f ON b.flight_id = f.flight_id
     JOIN Destinations d ON f.destination_id = d.destination_id
     WHERE d.city = p_city;
 END;

@@ -119,10 +119,10 @@ VALUES (5, 10, DATE '2025-06-06', TIMESTAMP '2025-06-06 18:30:00', TIMESTAMP '20
 
 -- Insert sample bookings
 INSERT INTO Bookings (pnr, passenger_name, flight_id, baggage_id, belt_number)
-VALUES ('PNR001', 'Kush', 1, 'BAG001', '1');
+VALUES ('OBAX45AB', 'Kush', 1, 'BAG001', '1');
 
 INSERT INTO Bookings (pnr, passenger_name, flight_id, baggage_id, belt_number)
-VALUES ('PNR002', 'Anita', 2, 'BAG002', '2');
+VALUES ('XAAB15AC', 'Anita', 2, 'BAG002', '2');
 
 INSERT INTO Bookings (pnr, passenger_name, flight_id, baggage_id, belt_number)
-VALUES ('PNR003', 'Rahul', 3, 'BAG003', '3');
+VALUES ('XEDF26AB', 'Rahul', 3, 'BAG003', '3');
