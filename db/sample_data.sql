@@ -117,12 +117,3 @@ VALUES (4, 10, DATE '2025-06-05', TIMESTAMP '2025-06-05 13:30:00', TIMESTAMP '20
 INSERT INTO Flights (airline_id, destination_id, flight_date, departure_time, arrival_time, gate_number)
 VALUES (5, 10, DATE '2025-06-06', TIMESTAMP '2025-06-06 18:30:00', TIMESTAMP '2025-06-06 20:45:00', 'L3');
 
--- Insert sample bookings
-INSERT INTO Bookings (pnr, passenger_name, flight_id, baggage_id, belt_number)
-VALUES ('OBAX45AB', 'Kush', 1, 'BAG001', '1');
-
-INSERT INTO Bookings (pnr, passenger_name, flight_id, baggage_id, belt_number)
-VALUES ('XAAB15AC', 'Anita', 2, 'BAG002', '2');
-
-INSERT INTO Bookings (pnr, passenger_name, flight_id, baggage_id, belt_number)
-VALUES ('XEDF26AB', 'Rahul', 3, 'BAG003', '3');

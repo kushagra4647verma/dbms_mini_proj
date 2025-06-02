@@ -1,10 +1,6 @@
 import cx_Oracle
 import os
 
-# Set Oracle client library path if needed
-# Uncomment and modify this if you're having Oracle client issues
-# os.environ["DYLD_LIBRARY_PATH"] = "/path/to/instantclient"
-
 def connect_db():
     """Create and return a database connection"""
     try:
@@ -13,5 +9,4 @@ def connect_db():
         return conn
     except cx_Oracle.DatabaseError as e:
         print(f"Database connection error: {e}")
-        # Return None or raise exception based on your error handling strategy
         raise
