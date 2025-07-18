@@ -1,6 +1,6 @@
 # Flight Management System
 
-A comprehensive web-based flight management system built with Flask and Oracle Database for Kempegowda International Airport.
+A comprehensive web-based flight management system vibe coded using Cursor V0 built with Flask and Oracle Database as a Database Managment Systems project
 
 ## 🚀 Features
 
